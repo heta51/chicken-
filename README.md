@@ -1,4 +1,10 @@
-chicken-
-========
+def transformer (letter):
+    return ord(letter)
 
-chicken
+print transformer ("a")
+
+
+
+def stripSpaces(mystring):
+    return mystring.replace(" ","")
+    
