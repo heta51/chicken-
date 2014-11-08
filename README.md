@@ -102,7 +102,8 @@ def standardDev (a):
     return sdev
 
 
-
+def getMax (a):
+ maxsofar
 
 
 
