@@ -16,6 +16,35 @@ SELECT customerid, state, count(customerid) from customers GROUP by state having
 4.Find the average price of items that contain the letter E that sold more than one unit.
 Select avg(price), item from items_ordered where item like '%e%' group by item having sum(quantity) > 1;
 
+Only including people whose last name come before Jones in the alphabet, return the number of people from each state in customers ordered alphabetically. Only return states with more than 1 person.
+Select state, count(state) from customers where (lastname between ‘A’ and ‘Jones’) group by state having count(state)>1 order by state desc;
+
+Using items_ordered, return the total quantity purchased, by each customer,  excluding items that start with the letter ‘L’. Only return customers who have purchased more than 2 and less than 7 total items. Finally, order the customers by quantity from low to high. 
+Select customerid, sum(quantity) from items_ordered where item not like ‘L%’ group by customerid having sum(quantity) between 3 and 6 order by sum(quantity) asc;
+
+
+Using only items purchased both in 1999 and after the 15th day of a given month, return the average price of each item sorted by avg(price). 
+Select item, avg(price) from items_ordered where (order_date like ‘%99’ AND  order_date between 16 and 30) group by item order by avg(price);
+
+So, let’s go back to our items_ordered and customers tables. Let’s return the name of the customer who purchased each item. 
+Select item, firstname, lastname from items_ordered inner join customers on items_ordered.customerid = customers.customerid;
+
+Write a query to determine which customer purchased the most expensive item, excluding any items that cost over $1000. 
+
+Using only customers who purchased items in 2000, list the total amount paid by these customers (and customer name) if total amount exceeds $50 – note we’re looking at their total purchase amount NOT just the purchase amount in 2000. 
+
+Select max(price), firstname, lastname from items_ordered inner join customers on customers.customerid = items_ordered.customerid where price<1000;
+
+ create table temp as select distinct customerid, firstname, lastname from items_ordered inner join customers on customers.customerid = items_ordered.customerid where order_date like ‘%00’;
+Select sum(price), firstname, lastname from temp inner join items_ordered on temp.customerid = items_ordered.customerid group by temp.customerid having sum(price) > 50;
+
+
+
+
+
+
+
+
 1)	How many orders did each customer make? Use the items_ordered table. Select the customerid, number of orders they made, and the sum of their orders.
 
 2)	How many orders did each customer make? Use the items_ordered table. Select the customerid, number of orders they made, and the sum of their orders if they purchased more than 1 item.
