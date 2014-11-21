@@ -13,15 +13,48 @@ scores = [10,23,13,18,12]
 scoreDict = makeDictionary(names, scores)
 
 
+fileref = open("rainfall.txt","r")
+fileref.close()
 
+rainfile = open("rainfall.txt","r")
+for aline in rainfile:
+    values = aline.split()
+    print (values[0], "had" values[1], "inches of rain")
+    
+    rainfile.close()
+    
 
+rainfile = open("rainfall.txt","r")
+outfile = open("rainfallInCM.txt","w")
+for aline in rainfile:
+    values = aline.split()
+    inches = float(values[1])
+    cm = 2.54 * inches
+    
+    outfile.write(values[0]+""+str(cm)+"/n")
 
+    rainfile.close()
+    outfile.close()
+    
+import urlib.request                #counting lines in the head and the body
+def countHead(url)
+    page = urlib.request.urlopen(url)
+    numHeadLines = 0
+    
+    line = page.readline().decode('utf-8')
+    while '<head>' not in line:
+         line = page.readline().decode('utf-8')
+        
+    line = page.readline().decode ('utf-8')
+    while '<head>' not in line:
+    numHeadLines = numHeadLines + 1
+        line = page.readline().decode('utf-8')
+        
+    line = page.readline().decode('utf-8')
+    while "<body>" not in line:
+         line = page.readline().decode('utf-8')
 
-
-
-
-
-
+    
 
 
 
