@@ -1,42 +1,16 @@
-1.Generate a list of all items in items_ordered that have more than one word
-SELECT item from items_ordered where item LIKE '% %';
-2.Generate the average per-unit price of all items that have more than one word
-SELECT avg(price/quantity) from items_ordered where item LIKE '% %';
-3.Select all customer id numbers and items with a quantity greater than 1
-SELECT item, customerid from items_ordered where quantity > 1;
-4.Return prices rounded to the nearest 10 (so 10, 20, 30, etc.)
-SELECT round(price/10) from items_ordered;
-
-1.Find the number of orders made and the total revenue raised by each customer if they have more than one purchase.
-SELECT customerid, count(customerid), sum(price) from items_ordered GROUP by customerid HAVING count(customerid)>1;
-2.Find the average price conditional on the customer paying less than $200.
-SELECT avg(price/quantity), customerid from items_ordered GROUP by customerid HAVING sum(price) < 200;
-3.Find the number of people in each state (from customers) if the state has more than one person in it.
-SELECT customerid, state, count(customerid) from customers GROUP by state having count(customerid) > 1;
-4.Find the average price of items that contain the letter E that sold more than one unit.
-Select avg(price), item from items_ordered where item like '%e%' group by item having sum(quantity) > 1;
-
-Only including people whose last name come before Jones in the alphabet, return the number of people from each state in customers ordered alphabetically. Only return states with more than 1 person.
-Select state, count(state) from customers where (lastname between ‘A’ and ‘Jones’) group by state having count(state)>1 order by state desc;
-
-Using items_ordered, return the total quantity purchased, by each customer,  excluding items that start with the letter ‘L’. Only return customers who have purchased more than 2 and less than 7 total items. Finally, order the customers by quantity from low to high. 
-Select customerid, sum(quantity) from items_ordered where item not like ‘L%’ group by customerid having sum(quantity) between 3 and 6 order by sum(quantity) asc;
 
 
-Using only items purchased both in 1999 and after the 15th day of a given month, return the average price of each item sorted by avg(price). 
-Select item, avg(price) from items_ordered where (order_date like ‘%99’ AND  order_date between 16 and 30) group by item order by avg(price);
 
-So, let’s go back to our items_ordered and customers tables. Let’s return the name of the customer who purchased each item. 
-Select item, firstname, lastname from items_ordered inner join customers on items_ordered.customerid = customers.customerid;
 
-Write a query to determine which customer purchased the most expensive item, excluding any items that cost over $1000. 
-
-Using only customers who purchased items in 2000, list the total amount paid by these customers (and customer name) if total amount exceeds $50 – note we’re looking at their total purchase amount NOT just the purchase amount in 2000. 
-
-Select max(price), firstname, lastname from items_ordered inner join customers on customers.customerid = items_ordered.customerid where price<1000;
-
- create table temp as select distinct customerid, firstname, lastname from items_ordered inner join customers on customers.customerid = items_ordered.customerid where order_date like ‘%00’;
-Select sum(price), firstname, lastname from temp inner join items_ordered on temp.customerid = items_ordered.customerid group by temp.customerid having sum(price) > 50;
+HW
+def makeDictionary(key, value):
+    dict = {}
+    for i in range(len(key)):
+        dict[key[i]]=value[i]
+    return dict
+names =['joe' , 'tom' , 'barb' , 'sue' , 'sally']
+scores = [10,23,13,18,12]
+scoreDict = makeDictionary(names, scores)
 
 
 
@@ -45,48 +19,21 @@ Select sum(price), firstname, lastname from temp inner join items_ordered on tem
 
 
 
-1)	How many orders did each customer make? Use the items_ordered table. Select the customerid, number of orders they made, and the sum of their orders.
-
-2)	How many orders did each customer make? Use the items_ordered table. Select the customerid, number of orders they made, and the sum of their orders if they purchased more than 1 item.
-
-3)	Write a query using a join to determine which items were ordered by each of the customers in the customers table. Select the customerid, firstname, lastname, order_date, item, and price for everything each customer purchased in the items_ordered table.
-
-4)	Select the item that has a price closest to $100. Hint: Use nested select statements. 
-
-5)	Select all item that had prices between $50 and $100. Only use items that have both a c and an e in them. 
-
-6)	For all of the tents that were ordered in the items_ordered table, what is the price of the lowest tent?
-
-
-1)	SELECT customerid, count(customerid), sum(price)
-FROM items_ordered
-GROUP BY customerid;
-
-2)	SELECT customerid, count(customerid), sum(price)
-FROM items_ordered
-GROUP BY customerid
-HAVING count(customerid) > 1;
-
-3)	SELECT customers.customerid, customers.firstname, customers.lastname,
-items_ordered.order_date, items_ordered.item, items_ordered.price
-FROM customers INNER JOIN items_ordered ON customers.customerid = items_ordered.customerid
-WHERE customers.customerid = items_ordered.customerid;
-
-4)	SELECT min(abs(price-100)),item FROM items_ordered;
-
-5)	SELECT item, price FROM items_ordered WHERE price BETWEEN 50 AND 100;
-
-6)	SELECT min(price) FROM items_ordered WHERE item = 'Tent';
 
 
 
-QUERY CLAUSE ORDER
-SELECT
-FROM
-WHERE
-GROUP BY
-HAVING
-ORDER BY
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def mode (a):
