@@ -40,6 +40,60 @@ gen strpctel=str*el_pct
 
 
 
+reg testscore str
+
+Testscr(hat) = 689.9 - 2.28 x str
+
+n = 420, R^2 = 0.051, S.E.R. = 18.6
+
+dont interpret the intercept 
+
+(percentage point)
+
+
+5.1% in the variation in testscores is explained by my model
+
+S.E.R.
+
+percntile 
+
+
+statistically significant 
+SEQ how much the quafitiant change (from sample to sample)
+
+
+
+
+reject the null
+becomes statistically significant
+
+
+
+T score >2 
+statistically significant
+
+
+reg
+putting another variable means that it holds it constant, 
+
+
+
+controlling or ability
+you just trhow in variables
+twin studies you controlled for ability
+
+
+saving stata bach file
+
+do file
+
+
+HW
+1, inetrcept
+ 1.082275
+slope
+0.60
+40*52*0.6
 
 
 
@@ -110,7 +164,62 @@ exit
 
 
 
+import turtle
 
+maxHEIGHT = 0
+maxAGE = 0
+
+height = [75,74,74,74,74,64,66,66,67,67]
+age = [83,64,63,56,67,85,79,67,90,80]
+
+aList = list(zip(height, age))
+
+def calcM(x,y):
+    sumxy = 0
+    sumxsquared = 0
+    x = height
+    y = age
+    for i in range(len(y)):
+        sumxy += y[i]*x[i]
+        sumxsquared += x[i]**(2)
+    n = len(y)
+
+    xMean = sum(height)/len(height)
+    yMean = sum(age)/len(age)
+
+    nuem = (sumxy-(n*xMean*yMean))
+    denom = (sumxsquared-(n*(xMean**(2))))
+
+    m = neum/denom
+    return m
+
+
+if height > maxHEIGHT:
+    maxHEIGHT = height
+if age > maxAGE:
+    maxAGE = age
+
+t = turtle.Turtle()
+screen = t.getscreen()
+screen.setworldcoordinates(0,0,maxHEIGHT,maxAGE)
+
+t.goto(0,0)
+screen.tracer(5)
+
+def plotRegression(qList,t):
+        rList = dict(qList)
+
+        M = calcM(x,y)
+
+        t.up()
+        for i in range(len(y)):
+            t.goto(x[i],y[i])
+            t.down()
+            t.up()
+            
+plotRegression(aList,t)
+screen.update()
+screen.exitonclick()
 
 
 
