@@ -441,6 +441,101 @@ def getMax (a):
 
 
 
+KEYS
+adict.keys()
+*Returns a dict_keys object, ex:
+  
+  list(ages.keys())
+  ['Hannah', 'Kelsey', 'Brenda', 'Rylea', 'David']
+
+note that you have to put the list first
+
+VALUES
+adict.values()
+*Returns a dict_values object
+
+ITEMS
+adict.items()
+*Returns a dict_items object
+
+GET
+adict.get(k)
+*Returnst he value associated with k; None otherwise
+
+GET
+adict.get(k,alt)
+*Returns the value associated with k; alt otherwise
+
+IN
+key in adict
+*Returns True if key is in the dictionary; False otherwise. ex:
+
+  'Rylea' in ages
+  True
+
+NOT IN
+key not in adict
+*Returns Ture if key is not in the dictionary; False otherwise
+
+INDEX
+adict[key]
+*Returns the value associated with key
+
+DEL
+del adict[key]
+*Removes the entre from the dictionary. ex:
+
+  del ages['David']
+
+EXAMPLES OF ADDING AND MODIFYING VALUES IN A DICTIONARY
+ages['David']
+ages['Kelsey'] = 19
+  *to add a key
+ages['David'] = ages['David'] + 1
+  *To add a value to the key
+
+STRUCTURE OF A KEY
+ages = {'David':45,'Brenda':46}
+
+
+STANDARD DEVIATION
+import math
+def standardDev(alist):
+  theMean = mean(alist)
+  
+  sum = 0
+  for item in alist:
+    difference = item - theMean
+    diffsq = difference ** 2
+    sum = sum + diffsq
+  
+  sdev = math.sqrt(sum/(len(alist)-1))
+  return sdev
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
