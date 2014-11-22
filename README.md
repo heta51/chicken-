@@ -37,7 +37,8 @@ dis ageincthirty
 
 *question 12
 gen agesquare = age^2
-reg log(ahe) age agesquare female bachelor 
+gen logahe = log(ahe)
+reg logahe age agesquare female bachelor 
 sca ageincrease = _b[age^2]*26 + _b[age]*26 - _b[age^2]*25 - _b[age]*25
 sca ageincthirty = _b[age^2]*34 + _b[age]*34 - _b[age^2]*33 - _b[age]*33
 dis ageincrease
