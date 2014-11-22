@@ -1,3 +1,97 @@
+* question 1
+reg ahe age
+dis _b[_cons]
+dis _b[age]
+ 
+*question 2 
+sca Bob =_b[_cons]+_b[age]*26
+sca Alexis =_b[_cons]+_b[age]*30
+dis Bob
+dis Alexis
+  
+*question 4 
+reg ahe if bachelor == 0
+reg ahe if bachelor == 1
+
+*question 6
+reg ahe age bachelor female 
+dis _b[age]
+
+*question 8
+sca Bob =_b[_cons]+_b[age]*26
+sca Alexis =_b[_cons]+_b[age]*30+_b[bachelor]+_b[female]
+dis Bob
+dis Alexis
+
+*question 10
+graph twoway (lfit ahe age) (scatter ahe age)
+graph rename Figure_1
+
+*question 11
+gen logahe = log(ahe)
+reg logahe age female bachelor
+sca ageincrease = _b[age]*26 - _b[age]*25
+sca ageincthirty = _b[age]*34 - _b[age]*33
+dis ageincrease
+dis ageincthirty
+
+*question 12
+gen agesquare = age^2
+reg log(ahe) age agesquare female bachelor 
+sca ageincrease = _b[age^2]*26 + _b[age]*26 - _b[age^2]*25 - _b[age]*25
+sca ageincthirty = _b[age^2]*34 + _b[age]*34 - _b[age^2]*33 - _b[age]*33
+dis ageincrease
+dis ageincthirty
+
+clear 
+exit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def makeDictionary(key, value):
+    dict = {}
+    for i in range(len(key)):
+        dict[key[i]]=value[i]
+    return dict
+names =['joe' , 'tom' , 'barb' , 'sue' , 'sally']
+scores = [10,23,13,18,12]
+scoreDict = makeDictionary(names, scores)
+
+
+print(scoreDict.get('barb'))
+
+scoreDict['john'] = 19
+
+
+
+
+scoreDict['sally'] = scoreDict['sally'] + 1
+
+
+def mean(scoreDict):
+    mean = sum(scores) / len(scores)
+    return mean
+
+
+del scoreDict['tom']
 
 
 
