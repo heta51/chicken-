@@ -1,3 +1,226 @@
+log using lasthwstata.log, replace
+use "C:\Users\Tamas\Desktop\lasthw.dta", clear
+* gen date = tq(1961q1)+_n-1
+* format %tq date
+tsset date
+list cpiaucsl unrate in 1/15
+gen cpilog = log(cpiaucsl)
+gen inflrate = (cpilog - L.cpilog)*400
+tsline inflrate
+tsline unrate
+list inflrate L.inflrate L2.inflrate L3.inflrate L4.inflrate L.unrate
+gen accinflrate = inflrate - L.inflrate
+reg accinflrate unrate 
+predict res, r
+reg accinflrate unrate if tin(1962q1, 2003q4)
+
+log close
+clear all
+exit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+interpret coef/ r^2
+
+difference between r^2 and t-stats
+
+predicting values (bob, alexis)
+
+residuals
+
+z-stats (log)
+
+log = level
+lnYi = b0 + b1Xi
+growth rate  = change
+
+discrimination =  holding everything constant (control)
+than wage difference is discrimination
+only the two different wage doesnt support 
+
+binary variable
+gen male = 1-female
+
+
+gen weird = female*married
+female married people
+
+r^2
+2.6 of the variation in wage is explained by my model
+
+t-stats is standard divation away so if its greater than 2 it is significant
+
+reg wage
+mean = coef
+
+
+reg wage male female, noconstant
+
+
+
+. gen lnwage = log(wage)
+
+. reg lnwage female educ
+
+reg log of anything its gonna be a percentage 
+on average every year the GDP grow 3%
+
+2logs = elesticity 
+
+
+
+
+      Source |       SS       df       MS              Number of obs =     526
+-------------+------------------------------           F(  2,   523) =  112.19
+       Model |  44.5315157     2  22.2657578           Prob > F      =  0.0000
+    Residual |  103.798231   523   .19846698           R-squared     =  0.3002
+-------------+------------------------------           Adj R-squared =  0.2975
+       Total |  148.329746   525   .28253285           Root MSE      =   .4455
+
+------------------------------------------------------------------------------
+      lnwage |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      female |  -.3608654   .0390245    -9.25   0.000    -.4375294   -.2842014
+        educ |   .0772033   .0070472    10.96   0.000     .0633591    .0910475
+       _cons |   1.870909   .0940541    19.89   0.000     1.686138    2.055679
+------------------------------------------------------------------------------
+
+
+MALE  lnY = 1.87 + 0.77xEDUC
+FEMALE  lnYf = 1.87 + 0.77xEDUC - o.36
+lnY-lnYf= -0.36
+
+ e^-0.36 - 1 = 0.30       30% less actually but you can ignore it
+
+
+regression new variables matter? hold them constant - regression
+correlation 
+
+
+
+. gen expersq = exper^2
+
+. gen tenuresq = tenure^2
+
+. reg lnwage female educ exper tenure tenuresq expersq
+
+to find where wages start to go down (high school and college student)
+
+
+partial derivative of expertise^2 ????
+
+
+
+time series in stata
+
+
+
+
+. set obs 100
+obs was 98, now 100
+
+. gen date = tq(1985q1)+_n-1
+
+. List date in 1/10
+unrecognized command:  List
+r(199);
+
+. list date in 1/10
+
+     +------+
+     | date |
+     |------|
+  1. |  100 |
+  2. |  101 |
+  3. |  102 |
+  4. |  103 |
+  5. |  104 |
+     |------|
+  6. |  105 |
+  7. |  106 |
+  8. |  107 |
+  9. |  108 |
+ 10. |  109 |
+     +------+
+
+tsset date
+
+tsline g u
+
+
+. label var u "percentunemployed"
+
+. label var g "percent GDP growth"
+
+
+time series has to be stationary 
+mean and the variance do not change
+
+
+
+
+
+
+
+
+
+tsline u g, lpattern(solid -)
+
+
+
+change^2Xt = (1-L)^2 Xt    acceleration 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 The purpose of histograms is to display absolute or relative frequencies for a single variable. In general, the command is
 
 histogram varname, percent title( )
