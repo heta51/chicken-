@@ -1,22 +1,32 @@
-log using lasthwstata.log, replace
-use "C:\Users\Tamas\Desktop\lasthw.dta", clear
-* gen date = tq(1961q1)+_n-1
-* format %tq date
-tsset date
-list cpiaucsl unrate in 1/15
-gen cpilog = log(cpiaucsl)
-gen inflrate = (cpilog - L.cpilog)*400
-tsline inflrate
-tsline unrate
-list inflrate L.inflrate L2.inflrate L3.inflrate L4.inflrate L.unrate
-gen accinflrate = inflrate - L.inflrate
-reg accinflrate unrate 
-predict res, r
-reg accinflrate unrate if tin(1962q1, 2003q4)
+(log using lasthwstata.log, replace
+(use "C:\Users\Tamas\Desktop\lasthw.dta", clear
 
-log close
+(* gen date = tq(1961q1)+_n-1
+
+(* format %tq date
+
+(tsset date
+
+(list cpiaucsl unrate in 1/15
+
+(gen cpilog = log(cpiaucsl)
+
+(gen inflrate = (cpilog - L.cpilog)*400
+
+(tsline inflrate
+
+(tsline unrate
+
+(list inflrate L.inflrate L2.inflrate L3.inflrate L4.inflrate L.unrate
+
+(gen accinflrate = inflrate - L.inflrate
+(reg accinflrate unrate 
+(predict res, r
+(reg accinflrate unrate if tin(1962q1, 2003q4)
+
+((log close
 clear all
-exit
+exit))
 
 
 
